@@ -1,0 +1,19 @@
+density-api:
+  build: .
+  container_name: density-api
+  environment:
+    INFLUXDB_HOST: influxdb
+  volumes:
+    - ./app:/app
+  ports:
+    - "9090:80"
+  links:
+    - "influxdb:influxdb"
+
+influxdb:
+  image: influxdb:1.4
+  container_name: influxdb
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+    - "8090:8090"
